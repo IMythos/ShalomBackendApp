@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shalom.shalom_backend_app.user.application.AuthService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
     private final AuthService authService;
 
