@@ -3,6 +3,8 @@ package com.shalom.shalom_backend_app.user.infraestructure.security;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.shalom.shalom_backend_app.user.domain.model.User;
@@ -15,8 +17,11 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class AuthAdapter implements AuthPort {
 
-    private static final String SECRET_KEY = "MiContraseñaMythos123x";
-    private static final long EXPIRATION_MS = 1000 * 60 * 60;
+    @Value("${ShalomBackend.jwt.secret}")
+    private String SECRET_KEY;
+
+    @Value("${ShalomBackend.jwt.expiration-ms}")
+    private long EXPIRATION_MS;
 
     private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
