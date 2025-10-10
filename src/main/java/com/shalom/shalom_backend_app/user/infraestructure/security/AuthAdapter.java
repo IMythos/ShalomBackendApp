@@ -17,10 +17,10 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class AuthAdapter implements AuthPort {
 
-    @Value("${ShalomBackend.jwt.secret}")
+    @Value("${jwt.secret}")
     private String SECRET_KEY;
 
-    @Value("${ShalomBackend.jwt.expiration-ms}")
+    @Value("${jwt.expiration-ms}")
     private long EXPIRATION_MS;
 
     private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());

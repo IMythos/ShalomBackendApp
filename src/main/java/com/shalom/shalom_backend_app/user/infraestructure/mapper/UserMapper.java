@@ -138,4 +138,45 @@ public class UserMapper {
 
         return dto;
     }
+
+    // DTO -> Dominio
+public static User toDomain(UserDTO dto) {
+    if (dto == null) return null;
+
+    if ("CLIENT".equalsIgnoreCase(dto.getTypeUser())) {
+        Client client = new Client();
+        client.setId(dto.getId());
+        client.setUsername(dto.getUsername());
+        client.setEmail(dto.getEmail());
+        client.setPasswordHash(dto.getPassword());
+        client.setRole(dto.getRole());
+        client.setTypeUser(dto.getTypeUser());
+        client.setDni(dto.getDni());
+        client.setAddress(dto.getAddress());
+        client.setPhone(dto.getPhone());
+        return client;
+    } 
+    else if ("EMPLOYEE".equalsIgnoreCase(dto.getTypeUser())) {
+        Employee emp = new Employee();
+        emp.setId(dto.getId());
+        emp.setUsername(dto.getUsername());
+        emp.setEmail(dto.getEmail());
+        emp.setPasswordHash(dto.getPassword());
+        emp.setRole(dto.getRole());
+        emp.setTypeUser(dto.getTypeUser());
+        emp.setPosition(dto.getPosition());
+        emp.setHireDate(dto.getHireDate());
+        return emp;
+    } 
+    else {
+        User user = new User();
+        user.setId(dto.getId());
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPasswordHash(dto.getPassword());
+        user.setRole(dto.getRole());
+        user.setTypeUser(dto.getTypeUser());
+        return user;
+    }
+}
 }
