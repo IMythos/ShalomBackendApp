@@ -6,7 +6,7 @@ import com.shalom.shalom_backend_app.user.domain.model.User;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.ClientEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.EmployeeEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.UserEntity;
-import com.shalom.shalom_backend_app.user.infraestructure.web.dto.UserDTO;
+import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserDTO;
 
 public class UserMapper {
 

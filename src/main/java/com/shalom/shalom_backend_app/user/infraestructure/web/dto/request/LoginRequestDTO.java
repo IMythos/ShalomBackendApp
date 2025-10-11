@@ -1,4 +1,4 @@
-package com.shalom.shalom_backend_app.user.infraestructure.web.dto;
+package com.shalom.shalom_backend_app.user.infraestructure.web.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginDTO {
+public class LoginRequestDTO {
 
     @Email(message = "El correo electronico no es valido.")
     @NotBlank(message = "El correo electronico es obligatorio.")

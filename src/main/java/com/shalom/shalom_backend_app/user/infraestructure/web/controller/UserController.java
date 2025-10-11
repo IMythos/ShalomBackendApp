@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shalom.shalom_backend_app.user.application.ManageUserService;
 import com.shalom.shalom_backend_app.user.domain.model.User;
 import com.shalom.shalom_backend_app.user.infraestructure.mapper.UserMapper;
-import com.shalom.shalom_backend_app.user.infraestructure.web.dto.UserDTO;
+import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserDTO;
 
 @RestController
 @RequestMapping("/api/users")

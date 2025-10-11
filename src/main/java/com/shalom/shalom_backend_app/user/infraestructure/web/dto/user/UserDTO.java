@@ -1,4 +1,4 @@
-package com.shalom.shalom_backend_app.user.infraestructure.web.dto;
+package com.shalom.shalom_backend_app.user.infraestructure.web.dto.user;
 
 import java.time.LocalDate;
 

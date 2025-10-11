@@ -38,7 +38,7 @@ public class UserEntity {
     private String email;
 
     @NotBlank
-    @Column(name = "passwor_hash", nullable = false)
+    @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
