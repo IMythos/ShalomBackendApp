@@ -3,6 +3,7 @@ package com.shalom.shalom_backend_app.user.infraestructure.persistance.entity;
 import com.shalom.shalom_backend_app.user.domain.model.Role;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
@@ -36,10 +38,13 @@ public class UserEntity {
     private String email;
 
     @NotBlank
+    @Column(name = "passwor_hash", nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     private Role role;
 
+    @Column(name = "type_user", nullable = false, length = 20)
     private String typeUser;
 }

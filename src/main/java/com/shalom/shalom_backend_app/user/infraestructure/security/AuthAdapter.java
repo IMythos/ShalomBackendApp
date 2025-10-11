@@ -1,5 +1,6 @@
 package com.shalom.shalom_backend_app.user.infraestructure.security;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
@@ -17,13 +18,14 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class AuthAdapter implements AuthPort {
 
-    @Value("${jwt.secret}")
-    private String SECRET_KEY;
+    private final SecretKey key;
 
-    @Value("${jwt.expiration-ms}")
-    private long EXPIRATION_MS;
+    private final long expiration;
 
-    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    public AuthAdapter(@Value("${app.jwt.key}") String key, @Value("${app.jwt.expiration}") long expiration) {
+        this.key = Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
+        this.expiration = expiration;
+    }
 
     @Override
     public String generateToken(User user) {
@@ -31,7 +33,7 @@ public class AuthAdapter implements AuthPort {
                 .subject(user.getEmail())
                 .claim("role", user.getRole().name())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_MS))
+                .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(key)
                 .compact();
     }
