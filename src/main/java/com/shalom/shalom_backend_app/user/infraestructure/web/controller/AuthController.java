@@ -33,7 +33,7 @@ public class AuthController {
         User user = userService.findUserByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         
-        LoginResponseDTO response = new LoginResponseDTO(token, user.getUsername(), user.getRole().name());
+        LoginResponseDTO response = new LoginResponseDTO(token, user.getRole().name());
 
         return ResponseEntity.ok(response);
     }
