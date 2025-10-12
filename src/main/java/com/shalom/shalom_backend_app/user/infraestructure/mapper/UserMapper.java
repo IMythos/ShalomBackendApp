@@ -6,7 +6,8 @@ import com.shalom.shalom_backend_app.user.domain.model.User;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.ClientEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.EmployeeEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.UserEntity;
-import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserDTO;
+import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserRequestDTO;
+import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserResponseDTO;
 
 public class UserMapper {
 
@@ -114,8 +115,8 @@ public class UserMapper {
 
     // DTO <-> Dominio
 
-    public static UserDTO toDTO(User domain) {
-        UserDTO dto = new UserDTO();
+    public static UserRequestDTO toDTO(User domain) {
+        UserRequestDTO dto = new UserRequestDTO();
 
         dto.setId(domain.getId());
         dto.setUsername(domain.getUsername());
@@ -140,43 +141,68 @@ public class UserMapper {
     }
 
     // DTO -> Dominio
-public static User toDomain(UserDTO dto) {
-    if (dto == null) return null;
+    public static User toDomain(UserRequestDTO dto) {
+        if (dto == null) return null;
 
-    if ("CLIENT".equalsIgnoreCase(dto.getTypeUser())) {
-        Client client = new Client();
-        client.setId(dto.getId());
-        client.setUsername(dto.getUsername());
-        client.setEmail(dto.getEmail());
-        client.setPasswordHash(dto.getPassword());
-        client.setRole(dto.getRole());
-        client.setTypeUser(dto.getTypeUser());
-        client.setDni(dto.getDni());
-        client.setAddress(dto.getAddress());
-        client.setPhone(dto.getPhone());
-        return client;
-    } 
-    else if ("EMPLOYEE".equalsIgnoreCase(dto.getTypeUser())) {
-        Employee emp = new Employee();
-        emp.setId(dto.getId());
-        emp.setUsername(dto.getUsername());
-        emp.setEmail(dto.getEmail());
-        emp.setPasswordHash(dto.getPassword());
-        emp.setRole(dto.getRole());
-        emp.setTypeUser(dto.getTypeUser());
-        emp.setPosition(dto.getPosition());
-        emp.setHireDate(dto.getHireDate());
-        return emp;
-    } 
-    else {
-        User user = new User();
-        user.setId(dto.getId());
-        user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
-        user.setPasswordHash(dto.getPassword());
-        user.setRole(dto.getRole());
-        user.setTypeUser(dto.getTypeUser());
-        return user;
+        if ("CLIENT".equalsIgnoreCase(dto.getTypeUser())) {
+            Client client = new Client();
+            client.setId(dto.getId());
+            client.setUsername(dto.getUsername());
+            client.setEmail(dto.getEmail());
+            client.setPasswordHash(dto.getPassword());
+            client.setRole(dto.getRole());
+            client.setTypeUser(dto.getTypeUser());
+            client.setDni(dto.getDni());
+            client.setAddress(dto.getAddress());
+            client.setPhone(dto.getPhone());
+            return client;
+        } 
+        else if ("EMPLOYEE".equalsIgnoreCase(dto.getTypeUser())) {
+            Employee emp = new Employee();
+            emp.setId(dto.getId());
+            emp.setUsername(dto.getUsername());
+            emp.setEmail(dto.getEmail());
+            emp.setPasswordHash(dto.getPassword());
+            emp.setRole(dto.getRole());
+            emp.setTypeUser(dto.getTypeUser());
+            emp.setPosition(dto.getPosition());
+            emp.setHireDate(dto.getHireDate());
+            return emp;
+        } 
+        else {
+            User user = new User();
+            user.setId(dto.getId());
+            user.setUsername(dto.getUsername());
+            user.setEmail(dto.getEmail());
+            user.setPasswordHash(dto.getPassword());
+            user.setRole(dto.getRole());
+            user.setTypeUser(dto.getTypeUser());
+            return user;
+        }
     }
-}
+
+    // Dominio -> ResponseDTO
+
+    public static UserResponseDTO toResponseDTO(User domain) {
+        if (domain == null) return null;
+
+        UserResponseDTO dto = new UserResponseDTO();
+
+        dto.setId(domain.getId());
+        dto.setUsername(domain.getUsername());
+        dto.setEmail(domain.getEmail());
+        dto.setRole(domain.getRole());
+        dto.setTypeUser(domain.getTypeUser());
+
+        if (domain instanceof Client c) {
+            dto.setDni(c.getDni());
+            dto.setAddress(c.getAddress());
+            dto.setPhone(c.getPhone());
+        } else if (domain instanceof Employee e) {
+            dto.setPosition(e.getPosition());
+            dto.setHireDate(e.getHireDate());
+        }
+
+        return dto;
+    }
 }

@@ -11,7 +11,7 @@ VALUES ('AdminPrincipal', 'admin@shalom.com',
 -- Empleado
 INSERT INTO users (username, email, password_hash, role, type_user)
 VALUES ('Empleado1', 'empleado@shalom.com', 
-        '$2a$10$ZBzqGZl1eeRL9GOVsQOu3OlBam2XnG8Z8FCS3my5uYCe8oehu6ZeW',
+        '$2a$10$rQg9D4R9yvcXP7M0SYx8.OEHOnrVMOjoZ6lUnJpvxpLuQkPasvCoi',
         'EMPLOYEE', 'EMPLOYEE');
 
 INSERT INTO employees (id, position, hire_date)
