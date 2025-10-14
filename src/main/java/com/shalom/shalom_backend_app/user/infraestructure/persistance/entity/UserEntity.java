@@ -44,7 +44,4 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
-
-    @Column(name = "type_user", nullable = false, length = 20)
-    private String typeUser;
 }

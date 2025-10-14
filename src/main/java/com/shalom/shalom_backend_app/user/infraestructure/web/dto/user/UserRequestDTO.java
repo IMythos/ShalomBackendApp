@@ -25,7 +25,6 @@ public class UserRequestDTO {
     private String password;
 
     private Role role;
-    private String typeUser;
 
     private String dni;
     private String address;

@@ -13,5 +13,4 @@ public class User {
     private String email;
     private String passwordHash;
     private Role role;
-    private String typeUser;
 }

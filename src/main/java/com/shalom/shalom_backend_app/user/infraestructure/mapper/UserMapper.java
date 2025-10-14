@@ -26,7 +26,6 @@ public class UserMapper {
             e.setEmail(domain.getEmail());
             e.setPasswordHash(domain.getPasswordHash());
             e.setRole(domain.getRole());
-            e.setTypeUser(domain.getTypeUser());
 
             return e;
         }
@@ -40,7 +39,6 @@ public class UserMapper {
         e.setEmail(domain.getEmail());
         e.setPasswordHash(domain.getPasswordHash());
         e.setRole(domain.getRole());
-        e.setTypeUser(domain.getTypeUser());
         e.setDni(domain.getDni());
         e.setAddress(domain.getAddress());
         e.setPhone(domain.getPhone());
@@ -56,7 +54,6 @@ public class UserMapper {
         e.setEmail(domain.getEmail());
         e.setPasswordHash(domain.getPasswordHash());
         e.setRole(domain.getRole());
-        e.setTypeUser(domain.getTypeUser());
         e.setPosition(domain.getPosition());
         e.setHireDate(domain.getHireDate());
 
@@ -78,7 +75,6 @@ public class UserMapper {
             u.setEmail(entity.getEmail());
             u.setPasswordHash(entity.getPasswordHash());
             u.setRole(entity.getRole());
-            u.setTypeUser(entity.getTypeUser());
 
             return u;
         }
@@ -122,7 +118,6 @@ public class UserMapper {
         dto.setUsername(domain.getUsername());
         dto.setEmail(domain.getEmail());
         dto.setRole(domain.getRole());
-        dto.setTypeUser(domain.getTypeUser());
         
         if (domain instanceof Client) {
             Client c = (Client) domain;
@@ -144,27 +139,25 @@ public class UserMapper {
     public static User toDomain(UserRequestDTO dto) {
         if (dto == null) return null;
 
-        if ("CLIENT".equalsIgnoreCase(dto.getTypeUser())) {
+        if ("CLIENT".equalsIgnoreCase(dto.getRole().name())) {
             Client client = new Client();
             client.setId(dto.getId());
             client.setUsername(dto.getUsername());
             client.setEmail(dto.getEmail());
             client.setPasswordHash(dto.getPassword());
             client.setRole(dto.getRole());
-            client.setTypeUser(dto.getTypeUser());
             client.setDni(dto.getDni());
             client.setAddress(dto.getAddress());
             client.setPhone(dto.getPhone());
             return client;
         } 
-        else if ("EMPLOYEE".equalsIgnoreCase(dto.getTypeUser())) {
+        else if ("EMPLOYEE".equalsIgnoreCase(dto.getRole().name())) {
             Employee emp = new Employee();
             emp.setId(dto.getId());
             emp.setUsername(dto.getUsername());
             emp.setEmail(dto.getEmail());
             emp.setPasswordHash(dto.getPassword());
             emp.setRole(dto.getRole());
-            emp.setTypeUser(dto.getTypeUser());
             emp.setPosition(dto.getPosition());
             emp.setHireDate(dto.getHireDate());
             return emp;
@@ -176,7 +169,6 @@ public class UserMapper {
             user.setEmail(dto.getEmail());
             user.setPasswordHash(dto.getPassword());
             user.setRole(dto.getRole());
-            user.setTypeUser(dto.getTypeUser());
             return user;
         }
     }
@@ -192,7 +184,6 @@ public class UserMapper {
         dto.setUsername(domain.getUsername());
         dto.setEmail(domain.getEmail());
         dto.setRole(domain.getRole());
-        dto.setTypeUser(domain.getTypeUser());
 
         if (domain instanceof Client c) {
             dto.setDni(c.getDni());
