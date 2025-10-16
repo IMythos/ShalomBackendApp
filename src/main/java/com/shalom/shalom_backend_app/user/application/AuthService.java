@@ -48,4 +48,9 @@ public class AuthService implements AuthUseCase {
 
         return authPort.extractUsername(email);
     }
+
+    public User getUserByEmail(String email) {
+        return userRepositoryPort.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado."));
+    }
 }

@@ -35,7 +35,7 @@ public class UserController {
 
     // CUS01: Gestionar usuarios
     // # CUS01.1: Registrar usuarios
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") // manejo de uri por ruta (security) x
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<UserResponseDTO>> createUser(@RequestBody UserRequestDTO dto) {
         try {

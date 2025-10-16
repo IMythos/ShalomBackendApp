@@ -22,7 +22,7 @@ WHERE u.username = 'Empleado1';
 -- Cliente
 INSERT INTO users (username, email, password_hash, role)
 VALUES ('ClientePrueba', 'cliente@shalom.com', 
-        '$2a$10$1Z4Z4xxD6DRyYopHWBhzH.YMdeJSGy8iE.t1RRL1Ol9JUn7iBGg2C',
+        '$2a$10$/ZkclH7c2xl86WNL5OvWZ.1/JohsKRVExdeqU7fmOe1vZbn1asAsC',
         'CLIENT');
 
 INSERT INTO clients (id, dni, address, phone)
