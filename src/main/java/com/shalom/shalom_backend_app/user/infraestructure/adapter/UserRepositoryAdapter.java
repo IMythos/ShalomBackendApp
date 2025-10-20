@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import com.shalom.shalom_backend_app.user.domain.model.User;
 import com.shalom.shalom_backend_app.user.domain.ports.out.UserRepositoryPort;
 import com.shalom.shalom_backend_app.user.infraestructure.mapper.UserMapper;
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.UserEntity;
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.repository.UserRepository;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.UserEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.repository.UserRepository;
 
 @Component
 public class UserRepositoryAdapter implements UserRepositoryPort{

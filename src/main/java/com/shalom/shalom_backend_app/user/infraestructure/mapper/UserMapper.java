@@ -3,9 +3,9 @@ package com.shalom.shalom_backend_app.user.infraestructure.mapper;
 import com.shalom.shalom_backend_app.user.domain.model.Client;
 import com.shalom.shalom_backend_app.user.domain.model.Employee;
 import com.shalom.shalom_backend_app.user.domain.model.User;
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.ClientEntity;
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.EmployeeEntity;
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.entity.UserEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.ClientEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.EmployeeEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.UserEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserRequestDTO;
 import com.shalom.shalom_backend_app.user.infraestructure.web.dto.user.UserResponseDTO;
 

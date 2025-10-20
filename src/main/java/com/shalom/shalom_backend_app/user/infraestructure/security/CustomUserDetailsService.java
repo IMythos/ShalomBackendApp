@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.shalom.shalom_backend_app.user.infraestructure.persistance.repository.UserRepository;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

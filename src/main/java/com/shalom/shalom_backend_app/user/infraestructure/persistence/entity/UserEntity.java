@@ -1,4 +1,4 @@
-package com.shalom.shalom_backend_app.user.infraestructure.persistance.entity;
+package com.shalom.shalom_backend_app.user.infraestructure.persistence.entity;
 
 import com.shalom.shalom_backend_app.user.domain.model.Role;
 
