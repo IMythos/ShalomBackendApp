@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +34,6 @@ public class UserController {
 
     // CUS01: Gestionar usuarios
     // # CUS01.1: Registrar usuarios
-    @PreAuthorize("hasRole('ADMIN')") // manejo de uri por ruta (security) x
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<UserResponseDTO>> createUser(@RequestBody UserRequestDTO dto) {
         try {
@@ -51,8 +49,7 @@ public class UserController {
     }
 
     // # CUS01.2: Listar usuarios
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<UserResponseDTO>>> listUsers() {
         try {
             List<UserResponseDTO> users = userService.listUsers()
@@ -66,9 +63,8 @@ public class UserController {
     }
 
     // # CUS01.3: Eliminar usuario
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<ApiResponse<Void>> deleteUser(@RequestParam Long id) {
         try {
             userService.deleteUser(id);
             return ResponseEntity.ok(ApiResponse.success("Usuario eliminado correctamente.", null));
@@ -79,10 +75,10 @@ public class UserController {
         }
     }
 
-    // #CUS01.4: Actualizar usuario
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@PathVariable Long id, @RequestBody UserRequestDTO dto) {
+    // #CUS01.4: Actualizar usuario 
+    // - Bug: FK in email and dni columns.
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@RequestParam Long id, @RequestBody UserRequestDTO dto) {
         try {
             User domain = UserMapper.toDomain(dto);
             User updated = userService.updateUser(id, domain);
