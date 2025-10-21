@@ -2,6 +2,8 @@ package com.shalom.shalom_backend_app.route.infraestructure.mapper;
 
 import com.shalom.shalom_backend_app.route.domain.model.Route;
 import com.shalom.shalom_backend_app.route.infraestructure.persistence.entity.RouteEntity;
+import com.shalom.shalom_backend_app.route.infraestructure.web.dto.request.RouteRequestDTO;
+import com.shalom.shalom_backend_app.route.infraestructure.web.dto.response.RouteResponseDTO;
 
 public class RouteMapper {
 
@@ -36,5 +38,33 @@ public class RouteMapper {
     }
 
     // RequestDTO -> Domain 
+    public static Route toDomain(RouteRequestDTO dto) {
+        if (dto == null) return null;
+
+        Route route = new Route();
+
+        route.setId(dto.getId());
+        route.setOrigin(dto.getOrigin());
+        route.setDestination(dto.getDestination());
+        route.setDistanceKm(dto.getDistanceKm());
+        route.setEstimatedTime(dto.getEstimatedTime());
+
+        return route;
+    }
+
     // Domain -> RequestDTO
+    public static RouteResponseDTO toResponseDTO(Route domain) {
+        if (domain == null) return null;
+
+        RouteResponseDTO dto = new RouteResponseDTO();
+
+        dto.setId(domain.getId());
+        dto.setOrigin(domain.getOrigin());
+        dto.setDestination(domain.getDestination());
+        dto.setDistanceKm(domain.getDistanceKm());
+        dto.setEstimatedTime(domain.getEstimatedTime());
+
+        return dto;
+
+    }
 }

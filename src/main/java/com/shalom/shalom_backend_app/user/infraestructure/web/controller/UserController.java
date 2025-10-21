@@ -34,7 +34,7 @@ public class UserController {
 
     // CUS01: Gestionar usuarios
     // # CUS01.1: Registrar usuarios
-    @PostMapping("/create")
+    @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponseDTO>> createUser(@RequestBody UserRequestDTO dto) {
         try {
             User domain = UserMapper.toDomain(dto);
@@ -76,7 +76,7 @@ public class UserController {
     }
 
     // #CUS01.4: Actualizar usuario 
-    // - Bug: FK in email and dni columns.
+    // - Bug: FK in email and dni columns (no fix)
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@RequestParam Long id, @RequestBody UserRequestDTO dto) {
         try {
