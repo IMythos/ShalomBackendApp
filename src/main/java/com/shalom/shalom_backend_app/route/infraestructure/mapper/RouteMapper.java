@@ -8,6 +8,7 @@ import com.shalom.shalom_backend_app.route.infraestructure.web.dto.response.Rout
 public class RouteMapper {
 
     // Domain -> Entity
+    
     public static RouteEntity toEntity(Route route) {
         if (route == null) return null;
 
@@ -23,6 +24,7 @@ public class RouteMapper {
     }
 
     // Entity -> Domain
+
     public static Route toDomain(RouteEntity entity) {
         if (entity == null) return null;
 
@@ -38,6 +40,7 @@ public class RouteMapper {
     }
 
     // RequestDTO -> Domain 
+
     public static Route toDomain(RouteRequestDTO dto) {
         if (dto == null) return null;
 
@@ -52,7 +55,8 @@ public class RouteMapper {
         return route;
     }
 
-    // Domain -> RequestDTO
+    // Domain -> ResponseDTO
+
     public static RouteResponseDTO toResponseDTO(Route domain) {
         if (domain == null) return null;
 
@@ -65,6 +69,5 @@ public class RouteMapper {
         dto.setEstimatedTime(domain.getEstimatedTime());
 
         return dto;
-
     }
 }

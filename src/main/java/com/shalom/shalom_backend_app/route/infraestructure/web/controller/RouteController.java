@@ -31,7 +31,7 @@ public class RouteController {
         this.routeService = routeService;
     }
 
-    // CUS03: Gestionar tarifas y rutas
+    // CUS03: Gestionar rutas
 
     // CUS03.1: Crear ruta
     @PostMapping("/create")
