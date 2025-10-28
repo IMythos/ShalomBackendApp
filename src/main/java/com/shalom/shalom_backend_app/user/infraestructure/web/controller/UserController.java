@@ -77,7 +77,7 @@ public class UserController {
 
     // #CUS01.4: Actualizar usuario 
     // - Bug: FK in email and dni columns (no fix)
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@RequestParam Long id, @RequestBody UserRequestDTO dto) {
         try {
             User domain = UserMapper.toDomain(dto);
