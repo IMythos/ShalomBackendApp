@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.shalom.shalom_backend_app.route.infraestructure.persistence.entity.RouteEntity;
 
 @Repository
-public interface RouteRepository  extends JpaRepository<RouteEntity, Long> {
+public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
     
 }

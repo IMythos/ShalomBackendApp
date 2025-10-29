@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,7 +66,7 @@ public class TariffController {
 
     // CUS04.3: Actualizar tarifa
     @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse<TariffResponseDTO>> updateTariff(@RequestParam Long id, @RequestBody TariffRequestDTO dto) {
+    public ResponseEntity<ApiResponse<TariffResponseDTO>> updateTariff(@PathVariable Long id, @RequestBody TariffRequestDTO dto) {
         try {
             Tariff domain = TariffMapper.toDomain(dto);
             Tariff updated = tariffService.updateTariff(id, domain);
