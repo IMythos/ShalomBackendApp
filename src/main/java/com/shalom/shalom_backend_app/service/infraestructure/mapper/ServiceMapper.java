@@ -45,6 +45,7 @@ public class ServiceMapper {
         Services domain = new Services();
 
         domain.setId(dto.getId());
+        domain.setServiceName(dto.getServiceName());
         domain.setDescription(dto.getDescription());
         domain.setBaseCost(dto.getBaseCost());
         domain.setEstimatedDays(dto.getEstimatedDays());
@@ -60,6 +61,7 @@ public class ServiceMapper {
         ServiceResponseDTO dto = new ServiceResponseDTO();
 
         dto.setId(domain.getId());
+        dto.setServiceName(domain.getServiceName());
         dto.setDescription(domain.getDescription());
         dto.setBaseCost(domain.getBaseCost());
         dto.setEstimatedDays(domain.getEstimatedDays());

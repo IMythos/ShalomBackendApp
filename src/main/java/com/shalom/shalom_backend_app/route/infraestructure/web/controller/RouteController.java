@@ -61,6 +61,8 @@ public class RouteController {
             ).collect(Collectors.toList());
 
             return ResponseEntity.ok(ApiResponse.success("Listado de rutas", list));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(ApiResponse.error("Error al listar rutas."));
         }
