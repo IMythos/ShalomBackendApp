@@ -33,7 +33,10 @@ public class SecurityConfig {
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/api/users/**").hasRole("ADMIN")
+                    .requestMatchers("/api/users/register").permitAll()
+
+                    .requestMatchers("/api/users/update/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                    .requestMatchers("/api/users/**").hasAnyRole("ADMIN", "EMPLOYEE")
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
