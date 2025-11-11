@@ -76,6 +76,7 @@ public class ShipmentMapper {
         dto.setClientName(domain.getClient().getUsername());
         dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
         dto.setService(domain.getService().getServiceName());
+        dto.setCode(domain.getCode());
         dto.setTotalCost(domain.getTotalCost());
         dto.setStatus(domain.getStatus());
         dto.setDate(domain.getDate());
