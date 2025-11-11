@@ -6,6 +6,7 @@ import com.shalom.shalom_backend_app.route.infraestructure.persistence.entity.Ro
 import com.shalom.shalom_backend_app.service.infraestructure.persistence.entity.ServiceEntity;
 import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.ClientEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +36,7 @@ public class ShipmentEntity {
     @JoinColumn(name = "id_client", nullable = false)
     private ClientEntity client;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_package", nullable = false)
     private PackageEntity pkg;
 

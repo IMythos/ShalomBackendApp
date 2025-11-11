@@ -1,6 +1,7 @@
 package com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,16 @@ import lombok.NoArgsConstructor;
 public class PackageRequestDTO {
     private Long id;
 
-    @NotBlank(message = "Debe tener un peso.")
+    @NotNull(message = "Debe tener un peso.")
+    @Positive(message = "El peso debe ser un número mayor que 0.")
     private Double weight;
 
-    @NotBlank(message = "Debe tener una altura.")
+    @NotNull(message = "Debe tener una altura.")
+    @Positive(message = "La altura debe ser un número mayor que 0.")
     private Double height;
 
-    @NotBlank(message = "Debe tener una longitud.")
+    @NotNull(message = "Debe tener una longitud.")
+    @Positive(message = "La longitud debe ser un número mayor que 0.")
     private Double length;
     private String description;
 }

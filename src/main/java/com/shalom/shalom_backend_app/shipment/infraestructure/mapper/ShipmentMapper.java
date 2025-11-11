@@ -15,7 +15,8 @@ import com.shalom.shalom_backend_app.user.infraestructure.mapper.UserMapper;
 public class ShipmentMapper {
     // Domain -> Entity
     public static ShipmentEntity toEntity(Shipment domain) {
-        if (domain == null) return null;
+        if (domain == null)
+            return null;
 
         ShipmentEntity entity = new ShipmentEntity();
 
@@ -34,7 +35,8 @@ public class ShipmentMapper {
 
     // Entity -> Domain
     public static Shipment toDomain(ShipmentEntity entity) {
-        if (entity == null) return null;
+        if (entity == null)
+            return null;
 
         Shipment domain = new Shipment();
 
@@ -53,34 +55,47 @@ public class ShipmentMapper {
 
     // DTO -> Domain
     public static Shipment toDomain(ShipmentRequestDTO dto) {
-        if (dto == null) return null;
+        if (dto == null)
+            return null;
 
         Shipment domain = new Shipment();
-        Client client = Client.builder().id(dto.getClientId()).build();
-
-        domain.setClient(client);
-        domain.setPkg(new Package(dto.getPackageId()));
+        domain.setClient(Client.builder().id(dto.getClientId()).build());
         domain.setRoute(new Route(dto.getRouteId()));
         domain.setService(new Services(dto.getServiceId()));
+
+        if (dto.getPkg() != null) {
+            Package pkg = new Package();
+            pkg.setDescription(dto.getPkg().getDescription());
+            pkg.setHeight(dto.getPkg().getHeight());
+            pkg.setLength(dto.getPkg().getLength());
+            pkg.setWeight(dto.getPkg().getWeight());
+            domain.setPkg(pkg);
+        }
 
         return domain;
     }
 
     // Domain -> DTO
     public static ShipmentResponseDTO toResponseDTO(Shipment domain) {
-        if (domain == null) return null;
+        if (domain == null)
+            return null;
 
         ShipmentResponseDTO dto = new ShipmentResponseDTO();
-    
+
         dto.setId(domain.getId());
-        dto.setClientName(domain.getClient().getUsername());
-        dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
-        dto.setService(domain.getService().getServiceName());
         dto.setCode(domain.getCode());
         dto.setTotalCost(domain.getTotalCost());
         dto.setStatus(domain.getStatus());
         dto.setDate(domain.getDate());
 
+        dto.setClientName(domain.getClient() != null ? domain.getClient().getUsername() : null);
+        
+        if (domain.getRoute() != null) {
+            dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
+        }
+
+        dto.setService(domain.getService() != null ? domain.getService().getServiceName() : null);
+        dto.setPackageDescription(domain.getPkg() != null ? domain.getPkg().getDescription() : null);
         return dto;
     }
 }

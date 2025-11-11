@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShipmentRequestDTO {
-    private Long clientId;
-    private Long routeId;   
-    private Long serviceId;
-    private PackageRequestDTO pkg;
+public class ShipmentStatusUpdateDTO {
+    private String status;
 }

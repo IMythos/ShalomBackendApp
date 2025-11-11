@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 public class ShipmentResponseDTO {
     private Long id;
     private String code;
-    private String clientName;
-    private String route;
-    private String service;
     private double totalCost;
     private String status;
     private LocalDateTime date;
+    private String clientName;
+    private String route;
+    private String service;
+    private String packageDescription;
 }

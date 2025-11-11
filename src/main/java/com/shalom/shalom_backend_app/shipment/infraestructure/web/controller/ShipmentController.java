@@ -18,7 +18,10 @@ import com.shalom.shalom_backend_app.shipment.application.ShipmentService;
 import com.shalom.shalom_backend_app.shipment.domain.model.Shipment;
 import com.shalom.shalom_backend_app.shipment.infraestructure.mapper.ShipmentMapper;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request.ShipmentRequestDTO;
+import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request.ShipmentStatusUpdateDTO;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.response.ShipmentResponseDTO;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/shipments")
@@ -32,7 +35,7 @@ public class ShipmentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<ShipmentResponseDTO>> createShipment(@RequestBody ShipmentRequestDTO dto) {
+    public ResponseEntity<ApiResponse<ShipmentResponseDTO>> createShipment(@Valid @RequestBody ShipmentRequestDTO dto) {
         try {
             Shipment domain = ShipmentMapper.toDomain(dto);
             Shipment created = shipmentService.createShipment(domain);
@@ -46,12 +49,13 @@ public class ShipmentController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse<ShipmentResponseDTO>> updateShipment(@PathVariable Long id, @RequestBody ShipmentRequestDTO dto) {
+    public ResponseEntity<ApiResponse<ShipmentResponseDTO>> updateShipment(@PathVariable Long id, @RequestBody ShipmentStatusUpdateDTO dto) {
         try {
-            Shipment domain = ShipmentMapper.toDomain(dto);
-            Shipment updated = shipmentService.updateShipment(id, domain);
+            Shipment shipment = new Shipment();
+            shipment.setStatus(dto.getStatus());
+            Shipment updated = shipmentService.updateShipment(id, shipment);
 
-            return ResponseEntity.ok(ApiResponse.success("Envio actualizado correctamente.", ShipmentMapper.toResponseDTO(updated)));
+            return ResponseEntity.ok(ApiResponse.success("Estado actualizado correctamente.", ShipmentMapper.toResponseDTO(updated)));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         } catch (Exception e) {
