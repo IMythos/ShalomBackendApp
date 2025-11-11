@@ -14,4 +14,8 @@ public class Services {
     private Double baseCost;
     private Integer estimatedDays;
     private Boolean isActive;
+
+    public Services(Long id) {
+        this.id = id;
+    }
 }

@@ -1,11 +1,11 @@
 package com.shalom.shalom_backend_app.user.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 public class User {
     private Long id;

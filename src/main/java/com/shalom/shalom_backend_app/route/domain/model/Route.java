@@ -13,4 +13,8 @@ public class Route {
     private String destination;
     private Double distanceKm;
     private String estimatedTime;
+
+    public Route(Long id) {
+        this.id = id;
+    }
 }

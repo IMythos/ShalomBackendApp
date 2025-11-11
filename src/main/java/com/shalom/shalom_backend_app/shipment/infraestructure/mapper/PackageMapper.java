@@ -51,7 +51,7 @@ public class PackageMapper {
         return domain;
     }
 
-    // Domain -> RequestDTO
+    // Domain -> ResponseDTO
     public static PackageResponseDTO toResponseDTO(Package domain) {
         if (domain == null) return null;
 

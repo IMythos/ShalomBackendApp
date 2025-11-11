@@ -13,4 +13,8 @@ public class Package {
     private Double height;
     private Double length;
     private String description;
+
+    public Package(Long id) {
+        this.id = id;
+    }
 }
