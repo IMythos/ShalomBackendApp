@@ -106,4 +106,9 @@ public class ShipmentService implements ManageShipmentUseCase {
 
         return shipmentRepositoryPort.save(existing);
     }
+
+    @Override
+    public List<Shipment> listShipmentsByClientEmail(String email) {
+        return shipmentRepositoryPort.findByClientEmail(email);
+    }
 }

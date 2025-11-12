@@ -8,6 +8,7 @@ import com.shalom.shalom_backend_app.shipment.domain.model.Package;
 import com.shalom.shalom_backend_app.shipment.domain.model.Shipment;
 import com.shalom.shalom_backend_app.shipment.infraestructure.persistence.entity.ShipmentEntity;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request.ShipmentRequestDTO;
+import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.response.ClientShipmentResponseDTO;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.response.ShipmentResponseDTO;
 import com.shalom.shalom_backend_app.user.domain.model.Client;
 import com.shalom.shalom_backend_app.user.infraestructure.mapper.UserMapper;
@@ -96,6 +97,27 @@ public class ShipmentMapper {
 
         dto.setService(domain.getService() != null ? domain.getService().getServiceName() : null);
         dto.setPackageDescription(domain.getPkg() != null ? domain.getPkg().getDescription() : null);
+        return dto;
+    }
+
+    public static ClientShipmentResponseDTO toClientResponseDTO(Shipment domain) {
+        if (domain == null)
+            return null;
+
+        ClientShipmentResponseDTO dto = new ClientShipmentResponseDTO();
+        dto.setId(domain.getId());
+        dto.setCode(domain.getCode());
+        dto.setTotalCost(domain.getTotalCost());
+        dto.setStatus(domain.getStatus());
+        dto.setDate(domain.getDate());
+        
+        if (domain.getRoute() != null) {
+            dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
+        }
+
+        dto.setService(domain.getService() != null ? domain.getService().getServiceName() : null);
+        dto.setPackageDescription(domain.getPkg() != null ? domain.getPkg().getDescription() : null);
+        
         return dto;
     }
 }

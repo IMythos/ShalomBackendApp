@@ -1,5 +1,6 @@
 package com.shalom.shalom_backend_app.shipment.infraestructure.persistence.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,5 @@ import com.shalom.shalom_backend_app.shipment.infraestructure.persistence.entity
 @Component
 public interface ShipmentRepository extends JpaRepository<ShipmentEntity, Long> {
     Optional<ShipmentEntity> findByCode(String code);
+    List<ShipmentEntity> findByClientEmail(String email);
 }

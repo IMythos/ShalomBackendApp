@@ -12,4 +12,5 @@ public interface ManageShipmentUseCase {
     List<Shipment> listShipments();
     Optional<Shipment> findShipmentById(Long id);
     Optional<Shipment> findShipmentByCode(String code);
+    List<Shipment> listShipmentsByClientEmail(String email);
 }
