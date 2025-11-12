@@ -11,5 +11,6 @@ import com.shalom.shalom_backend_app.shipment.infraestructure.persistence.entity
 @Component
 public interface ShipmentRepository extends JpaRepository<ShipmentEntity, Long> {
     Optional<ShipmentEntity> findByCode(String code);
-    List<ShipmentEntity> findByClientEmail(String email);
+    List<ShipmentEntity> findByClientId(Long id);
+    Optional<ShipmentEntity> findByCodeAndClientId(String code, Long id);
 }

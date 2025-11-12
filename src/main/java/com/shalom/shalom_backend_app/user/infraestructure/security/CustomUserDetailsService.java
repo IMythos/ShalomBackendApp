@@ -1,6 +1,9 @@
 package com.shalom.shalom_backend_app.user.infraestructure.security;
 
-import org.springframework.security.core.userdetails.User;
+import java.util.List;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,12 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
-                .map(user -> User
-                .builder()
-                .username(user.getEmail())
-                .password(user.getPasswordHash())
-                .roles(user.getRole().name())
-                .build())
+            .map(user -> new CustomUserDetails(
+                    user.getId(),
+                    user.getEmail(),
+                    user.getPasswordHash(),
+                    List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()))
+            ))
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + email));
     }
 }

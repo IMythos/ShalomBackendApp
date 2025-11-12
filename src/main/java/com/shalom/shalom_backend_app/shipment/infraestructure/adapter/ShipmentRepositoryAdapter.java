@@ -46,13 +46,5 @@ public class ShipmentRepositoryAdapter implements ShipmentRepositoryPort {
         entity = shipmentRepository.save(entity);
 
         return ShipmentMapper.toDomain(entity);
-    }
-
-    @Override
-    public List<Shipment> findByClientEmail(String email) {
-        return shipmentRepository.findByClientEmail(email).stream()
-                .map(ShipmentMapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
+    }   
 }

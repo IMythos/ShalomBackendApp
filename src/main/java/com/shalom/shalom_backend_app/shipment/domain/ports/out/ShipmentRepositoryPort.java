@@ -11,5 +11,4 @@ public interface ShipmentRepositoryPort {
     Optional<Shipment> findByCode(String code);
     List<Shipment> findAll();
     void deleteById(Long id);
-    List<Shipment> findByClientEmail(String email);
 }

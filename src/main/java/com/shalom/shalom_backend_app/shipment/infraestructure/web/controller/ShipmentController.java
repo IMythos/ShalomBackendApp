@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,6 @@ import com.shalom.shalom_backend_app.shipment.domain.model.Shipment;
 import com.shalom.shalom_backend_app.shipment.infraestructure.mapper.ShipmentMapper;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request.ShipmentRequestDTO;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.request.ShipmentStatusUpdateDTO;
-import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.response.ClientShipmentResponseDTO;
 import com.shalom.shalom_backend_app.shipment.infraestructure.web.dto.response.ShipmentResponseDTO;
 
 import jakarta.validation.Valid;
@@ -91,22 +90,6 @@ public class ShipmentController {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(ApiResponse.error("Error al obtener el envio."));
-        }
-    }
-
-    @GetMapping("/my-shipments")
-    public ResponseEntity<ApiResponse<List<ClientShipmentResponseDTO>>> getClientShipments() {
-        try {
-            String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-            List<Shipment> shipments = shipmentService.listShipmentsByClientEmail(userEmail);
-
-            List<ClientShipmentResponseDTO> dtoList = shipments.stream().map(ShipmentMapper::toClientResponseDTO).toList();
-
-            return ResponseEntity.ok(ApiResponse.success("Listado de envíos del cliente.", dtoList));
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(ApiResponse.error("Error al obtener los envíos del cliente."));
         }
     }
 }
