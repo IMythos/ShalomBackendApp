@@ -10,4 +10,5 @@ import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.Use
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByUsername(String username);
 }

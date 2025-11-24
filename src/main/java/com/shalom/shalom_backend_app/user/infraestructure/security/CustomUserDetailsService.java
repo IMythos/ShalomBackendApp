@@ -21,14 +21,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
             .map(user -> new CustomUserDetails(
                     user.getId(),
-                    user.getEmail(),
+                    user.getUsername(),
                     user.getPasswordHash(),
                     List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()))
             ))
-            .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + email));
+            .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
     }
 }
