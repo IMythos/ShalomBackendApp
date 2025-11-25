@@ -7,19 +7,32 @@ import com.shalom.shalom_backend_app.shipment_request.domain.ports.out.CreateSol
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.mapper.SolicitudeMapper;
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.persistence.entity.SolicitudeEntity;
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.persistence.repository.SolicitudeRepository;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.ClientEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.UserEntity;
+import com.shalom.shalom_backend_app.user.infraestructure.persistence.repository.UserRepository;
 
 @Component
 public class SolicitudeRepositoryAdapter implements CreateSolicitudeRepositoryPort {
     
     private final SolicitudeRepository solicitudeRepository;
+    private final UserRepository userRepository;
 
-    public SolicitudeRepositoryAdapter(SolicitudeRepository solicitudeRepository) {
+    public SolicitudeRepositoryAdapter(SolicitudeRepository solicitudeRepository, UserRepository userRepository) {
         this.solicitudeRepository = solicitudeRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Solicitude save(Solicitude solicitude) {
         SolicitudeEntity entity = SolicitudeMapper.toEntity(solicitude);
+        UserEntity client = userRepository.findById(solicitude.getClientId())
+            .orElseThrow(() -> new RuntimeException("Cliente no encontrado."));
+
+        if (!(client instanceof ClientEntity)) {
+            throw new RuntimeException("El usuario no es un cliente.");
+        }
+        
+        entity.setClient((ClientEntity) client);
         entity = solicitudeRepository.save(entity);
 
         return SolicitudeMapper.toDomain(entity);

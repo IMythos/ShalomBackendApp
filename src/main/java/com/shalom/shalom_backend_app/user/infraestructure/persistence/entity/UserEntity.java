@@ -34,6 +34,12 @@ public class UserEntity {
     @NotBlank(message = "El nombre de usuario es obligatorio.")
     private String username;
 
+    @Column(nullable = false, length = 100)
+    private String firstname;
+
+    @Column(nullable = false, length = 100)
+    private String lastname;
+
     @Email(message = "Ingrese un correo valido.")
     @Column(unique = true, nullable = false)
     private String email;
@@ -45,4 +51,8 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
+
+    public String getFullname() {
+        return firstname + " " + lastname;
+    }
 }

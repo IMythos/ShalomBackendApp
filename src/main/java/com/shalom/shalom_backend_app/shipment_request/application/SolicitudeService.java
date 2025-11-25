@@ -2,6 +2,8 @@ package com.shalom.shalom_backend_app.shipment_request.application;
 
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Service;
+
 import com.shalom.shalom_backend_app.shipment_request.domain.model.RequestStatus;
 import com.shalom.shalom_backend_app.shipment_request.domain.model.Solicitude;
 import com.shalom.shalom_backend_app.shipment_request.domain.ports.in.CreateSolicitudeUseCase;
@@ -9,6 +11,7 @@ import com.shalom.shalom_backend_app.shipment_request.domain.ports.out.CreateSol
 import com.shalom.shalom_backend_app.user.domain.model.User;
 import com.shalom.shalom_backend_app.user.domain.ports.out.UserRepositoryPort;
 
+@Service
 public class SolicitudeService implements CreateSolicitudeUseCase {
 
     private final CreateSolicitudeRepositoryPort createSolicitudeRepositoryPort;

@@ -4,7 +4,6 @@ import com.shalom.shalom_backend_app.shipment_request.domain.model.Solicitude;
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.persistence.entity.SolicitudeEntity;
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.web.dto.request.SolicitudeRequestDTO;
 import com.shalom.shalom_backend_app.shipment_request.infraestructure.web.dto.response.SolicitudeResponseDTO;
-import com.shalom.shalom_backend_app.user.infraestructure.persistence.entity.ClientEntity;
 
 public class SolicitudeMapper {
     // Domain -> Entity
@@ -15,13 +14,10 @@ public class SolicitudeMapper {
         SolicitudeEntity entity = new SolicitudeEntity();
 
         entity.setId(domain.getId());
-        if (domain.getClientId() != null) {
-            ClientEntity clientRef = new ClientEntity();
-            clientRef.setId(domain.getClientId());
-            entity.setClient(clientRef);
-        }
+
         entity.setRecipientDni(domain.getRecipientDni());
         entity.setRecipientName(domain.getRecipientName());
+        entity.setRecipientCity(domain.getRecipientCity());
         entity.setDestinationCity(domain.getDestinationCity());
         entity.setDescription(domain.getDescription());
         entity.setPackageImageUrl(domain.getPackageImageUrl());
@@ -41,13 +37,21 @@ public class SolicitudeMapper {
         Solicitude domain = new Solicitude();
 
         domain.setId(entity.getId());
-        if (entity.getClient() != null) {
-            domain.setClientId(entity.getClient().getId());
-        } else {
-            domain.setClientId(null);
-        }
+        domain.setClientId(
+            entity.getClient() != null ? entity.getClient().getId() : null
+        );
+
+        domain.setClientUsername(
+            entity.getClient() != null ? entity.getClient().getUsername() : null
+        );
+
+        domain.setClientFullname(
+            entity.getClient() != null ? entity.getClient().getFullname() : null
+        );
+
         domain.setRecipientDni(entity.getRecipientDni());
         domain.setRecipientName(entity.getRecipientName());
+        domain.setRecipientCity(entity.getRecipientCity());
         domain.setDestinationCity(entity.getDestinationCity());
         domain.setDescription(entity.getDescription());
         domain.setPackageImageUrl(entity.getPackageImageUrl());
@@ -69,6 +73,7 @@ public class SolicitudeMapper {
 
         domain.setRecipientDni(dto.getRecipientDni());
         domain.setRecipientName(dto.getRecipientName());
+        domain.setRecipientCity(dto.getRecipientCity());
         domain.setDestinationCity(dto.getDestinationCity());
         domain.setDescription(dto.getDescription());
 
@@ -85,15 +90,20 @@ public class SolicitudeMapper {
 
         dto.setId(domain.getId());
         dto.setClientId(domain.getClientId());
+        dto.setClientFullname(domain.getClientFullname());
+
         dto.setRecipientDni(domain.getRecipientDni());
         dto.setRecipientName(domain.getRecipientName());
+        dto.setRecipientCity(domain.getRecipientCity());
+
         dto.setDestinationCity(domain.getDestinationCity());
         dto.setDescription(domain.getDescription());
-
         dto.setPackageImageUrl(domain.getPackageImageUrl());
-        dto.setStatus(domain.getStatus());
+        
+        dto.setStatus(domain.getStatus().name());
         dto.setRequestDate(domain.getRequestDateTime());
 
         return dto;
     }
+
 }

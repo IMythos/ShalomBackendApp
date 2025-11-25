@@ -10,7 +10,13 @@ import lombok.experimental.SuperBuilder;
 public class User {
     private Long id;
     private String username;
+    private String firstname;
+    private String lastname;
     private String email;
     private String passwordHash;
     private Role role;
+
+    public String getFullname() {
+        return firstname + " " + lastname;
+    }
 }

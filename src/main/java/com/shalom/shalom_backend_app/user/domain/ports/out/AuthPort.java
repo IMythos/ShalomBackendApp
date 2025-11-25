@@ -6,4 +6,5 @@ public interface AuthPort {
     String generateToken(User user);
     boolean validateToken(String token);
     String extractUsername(String token);
+    String extractRole(String token);
 }

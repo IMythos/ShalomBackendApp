@@ -23,6 +23,8 @@ public class UserMapper {
 
             e.setId(domain.getId());
             e.setUsername(domain.getUsername());
+            e.setFirstname(domain.getFirstname());
+            e.setLastname(domain.getLastname());
             e.setEmail(domain.getEmail());
             e.setPasswordHash(domain.getPasswordHash());
             e.setRole(domain.getRole());
@@ -36,6 +38,8 @@ public class UserMapper {
 
         e.setId(domain.getId());
         e.setUsername(domain.getUsername());
+        e.setFirstname(domain.getFirstname());
+        e.setLastname(domain.getLastname());
         e.setEmail(domain.getEmail());
         e.setPasswordHash(domain.getPasswordHash());
         e.setRole(domain.getRole());
@@ -51,6 +55,8 @@ public class UserMapper {
 
         e.setId(domain.getId());
         e.setUsername(domain.getUsername());
+        e.setFirstname(domain.getFirstname());
+        e.setLastname(domain.getLastname());
         e.setEmail(domain.getEmail());
         e.setPasswordHash(domain.getPasswordHash());
         e.setRole(domain.getRole());
@@ -72,6 +78,8 @@ public class UserMapper {
 
             u.setId(entity.getId());
             u.setUsername(entity.getUsername());
+            u.setFirstname(entity.getFirstname());
+            u.setLastname(entity.getLastname());
             u.setEmail(entity.getEmail());
             u.setPasswordHash(entity.getPasswordHash());
             u.setRole(entity.getRole());
@@ -85,6 +93,8 @@ public class UserMapper {
 
         c.setId(entity.getId());
         c.setUsername(entity.getUsername());
+        c.setFirstname(entity.getFirstname());
+        c.setLastname(entity.getLastname());
         c.setEmail(entity.getEmail());
         c.setPasswordHash(entity.getPasswordHash());
         c.setRole(entity.getRole());
@@ -100,6 +110,8 @@ public class UserMapper {
 
         emp.setId(entity.getId());
         emp.setUsername(entity.getUsername());
+        emp.setFirstname(entity.getFirstname());
+        emp.setLastname(entity.getLastname());
         emp.setEmail(entity.getEmail());
         emp.setPasswordHash(entity.getPasswordHash());
         emp.setRole(entity.getRole());
@@ -116,6 +128,8 @@ public class UserMapper {
 
         dto.setId(domain.getId());
         dto.setUsername(domain.getUsername());
+        dto.setFirstname(domain.getFirstname());
+        dto.setLastname(domain.getLastname());
         dto.setEmail(domain.getEmail());
         dto.setRole(domain.getRole());
         
@@ -143,6 +157,8 @@ public class UserMapper {
             Client client = new Client();
             client.setId(dto.getId());
             client.setUsername(dto.getUsername());
+            client.setFirstname(dto.getFirstname());
+            client.setLastname(dto.getLastname());
             client.setEmail(dto.getEmail());
             client.setPasswordHash(dto.getPassword());
             client.setRole(dto.getRole());
@@ -155,6 +171,8 @@ public class UserMapper {
             Employee emp = new Employee();
             emp.setId(dto.getId());
             emp.setUsername(dto.getUsername());
+            emp.setFirstname(dto.getFirstname());
+            emp.setLastname(dto.getLastname());
             emp.setEmail(dto.getEmail());
             emp.setPasswordHash(dto.getPassword());
             emp.setRole(dto.getRole());
@@ -181,7 +199,7 @@ public class UserMapper {
         UserResponseDTO dto = new UserResponseDTO();
 
         dto.setId(domain.getId());
-        dto.setUsername(domain.getUsername());
+        dto.setFullname(domain.getFirstname() + " " + domain.getLastname());
         dto.setEmail(domain.getEmail());
         dto.setRole(domain.getRole());
 

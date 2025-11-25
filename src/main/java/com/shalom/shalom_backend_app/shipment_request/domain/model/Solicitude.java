@@ -12,11 +12,17 @@ import lombok.NoArgsConstructor;
 public class Solicitude {
     private Long id;
     private Long clientId;
+    private String clientUsername;
+    private String clientFullname;
+
     private String recipientDni;
     private String recipientName;
+    private String recipientCity;
+
     private String destinationCity;
     private String description;
     private String packageImageUrl;
+    
     private RequestStatus status;
     private LocalDateTime requestDateTime; 
     private boolean isDeleted;

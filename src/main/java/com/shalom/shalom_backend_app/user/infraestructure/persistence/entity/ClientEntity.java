@@ -2,6 +2,7 @@ package com.shalom.shalom_backend_app.user.infraestructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "client")
 @EqualsAndHashCode(callSuper = true)
+@PrimaryKeyJoinColumn(name = "id_user")
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientEntity extends UserEntity {

@@ -54,4 +54,9 @@ public class AuthAdapter implements AuthPort {
         return claims.getSubject();
     }
     
+    @Override
+    public String extractRole(String token) {
+        Claims claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
+        return claims.get("role", String.class);
+    }
 }

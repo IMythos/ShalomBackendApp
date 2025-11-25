@@ -39,6 +39,9 @@ public class SolicitudeEntity {
     @Column(name = "recipient_name", nullable = false)
     private String recipientName;
 
+    @Column(name = "recipient_city", length = 150)
+    private String recipientCity;
+
     @Column(name = "destination_city", length = 150)
     private String destinationCity;
 

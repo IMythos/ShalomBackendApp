@@ -17,6 +17,9 @@ public class UserRequestDTO {
     @NotBlank(message = "El nombre de usuario es obligatorio.")
     private String username;
 
+    private String firstname;
+    private String lastname;
+
     @Email(message = "El correo electronico no es valido.")
     @NotBlank(message = "El correo electronico es obligatorio.")
     private String email;
