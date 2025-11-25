@@ -1,5 +1,8 @@
 package com.shalom.shalom_backend_app.route.infraestructure.web.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +19,7 @@ import com.shalom.shalom_backend_app.route.infraestructure.web.dto.response.Agen
 import com.shalom.shalom_backend_app.shared.api.ApiResponse;
 
 @RestController
-@RequestMapping("/api/agency")
+@RequestMapping("/api/agencies")
 public class AgencyController {
     private final AgencyService agencyService;
 
@@ -30,11 +33,26 @@ public class AgencyController {
             Agency domain = AgencyMapper.toDomain(dto);
             Agency created = agencyService.createAgency(domain);
 
-            return ResponseEntity.ok(ApiResponse.success("Agencia creada correctamente.", AgencyMapper.toResponseDTO(created)));
+            return ResponseEntity
+                    .ok(ApiResponse.success("Agencia creada correctamente.", AgencyMapper.toResponseDTO(created)));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(ApiResponse.error("Error al crear una nueva agencia."));
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<AgencyResponseDTO>>> listAgencies() {
+        try {
+            List<AgencyResponseDTO> list = agencyService.listAgencies().stream().map(AgencyMapper::toResponseDTO)
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(ApiResponse.success("Listado de agencias.", list));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error("Error al listar agencias."));
         }
     }
 

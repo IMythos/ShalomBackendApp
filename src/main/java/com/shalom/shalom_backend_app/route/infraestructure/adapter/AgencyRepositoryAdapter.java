@@ -1,5 +1,8 @@
 package com.shalom.shalom_backend_app.route.infraestructure.adapter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import com.shalom.shalom_backend_app.route.domain.model.Agency;
@@ -30,4 +33,12 @@ public class AgencyRepositoryAdapter implements AgencyRepositoryPort {
 
         return AgencyMapper.toDomain(entity);
     }
+
+    @Override
+    public List<Agency> findAll() {
+        return agencyRepository.findAll()
+                .stream()
+                .map(AgencyMapper::toDomain)
+                .collect(Collectors.toList());
+    }    
 }

@@ -80,11 +80,19 @@ public class TariffMapper {
         TariffResponseDTO dto = new TariffResponseDTO();
 
         dto.setId(domain.getId());
+        
         if (domain.getRoute() != null) {
             dto.setRouteId(domain.getRoute().getId());
-            dto.setRouteOrigin(domain.getRoute().getDestination());
-            dto.setRouteDestination(domain.getRoute().getDestination());
+
+            if (domain.getRoute().getOrigin() != null) {
+                dto.setRouteOrigin(domain.getRoute().getOrigin().getName());
+            }
+
+            if (domain.getRoute().getDestination() != null) {
+                dto.setRouteDestination(domain.getRoute().getDestination().getName());
+            }
         }
+
         dto.setBasePrice(domain.getBasePrice());
         dto.setPricePerKg(domain.getPricePerKg());
         dto.setPricePerKm(domain.getPricePerKm());

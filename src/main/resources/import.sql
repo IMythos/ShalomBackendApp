@@ -15,3 +15,15 @@ INSERT INTO employee (id_user, hire_date, position) VALUES (2, '2023-05-20', 'Ag
 -- Clientes
 
 INSERT INTO client (id_user, dni, phone, address) VALUES (3, '62472044', '952014938', 'Av. Primero de Mayo, Lima');
+
+-- Agencias
+
+INSERT INTO agencies (name, city, address) VALUES ('sede Chorrillos', 'Lima - Chorrillos', 'Av. Santa Anita 580');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Mexico CO', 'Lima - La Victoria', 'Av. Mexico 1125');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Canada', 'Lima - La Victoria', 'Av. Canada 1603');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Santa Anita', 'Lima - Ate Vitarte', 'Av. Nicolas Ayllon 3080');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Chosica', 'Lima - Lurigancho', 'Av. El Sol 124');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Luna Pizarro', 'Lima - La Victoria', 'Jr. Luna Pizarro 701');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Parra', 'Arequipa - Arequipa', 'Av. Parra 379');
+INSERT INTO agencies (name, city, address) VALUES ('Sede La Tomilla', 'Arequipa - Cayma', 'Av. Ramon Castilla 1000');
+INSERT INTO agencies (name, city, address) VALUES ('Sede Parcona', 'Ica - Parcona', 'Cp. De Parcona Mz. B Lote 16');

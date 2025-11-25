@@ -1,5 +1,7 @@
 package com.shalom.shalom_backend_app.route.application;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.shalom.shalom_backend_app.route.domain.model.Agency;
@@ -23,5 +25,10 @@ public class AgencyService implements ManageAgencyUseCase {
     @Override
     public Agency getAgencyById(Long id) {
         return agencyRepositoryPort.findById(id);
+    }
+
+    @Override
+    public List<Agency> listAgencies() {
+        return agencyRepositoryPort.findAll();
     }
 }
