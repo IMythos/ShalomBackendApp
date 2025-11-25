@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RouteResponseDTO {
+public class AgencyResponseDTO {
     private Long id;
-    private AgencyResponseDTO origin;
-    private AgencyResponseDTO destination;
-    private Double distanceKm;
-    private String estimatedTime;
+    private String name;
+    private String city;
+    private String address;
 }

@@ -8,10 +8,10 @@ public class RouteRequestDTO {
     private Long id;
 
     @NotBlank(message = "Debe tener un origen especifico.")
-    private String origin;
+    private Long originId;
 
     @NotBlank(message = "Debe tener un destino especifico.")
-    private String destination;
+    private Long destinationId;
 
     @NotBlank(message = "Debe contar con una distancia real.")
     private Double distanceKm;

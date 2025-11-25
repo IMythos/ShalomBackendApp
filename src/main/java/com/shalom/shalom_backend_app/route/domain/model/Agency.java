@@ -7,14 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Route {
+public class Agency {
     private Long id;
-    private Agency origin;
-    private Agency destination;
-    private Double distanceKm;
-    private String estimatedTime;
-
-    public Route(Long id) {
-        this.id = id;
-    }
+    private String name;
+    private String city;
+    private String address;
 }

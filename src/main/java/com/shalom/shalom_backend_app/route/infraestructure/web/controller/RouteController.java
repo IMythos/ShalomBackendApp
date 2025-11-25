@@ -56,10 +56,8 @@ public class RouteController {
     @GetMapping    
     public ResponseEntity<ApiResponse<List<RouteResponseDTO>>> list() {
         try {
-            List<RouteResponseDTO> list = routeService.listRoute().stream().map(route ->
-                new RouteResponseDTO(route.getId(), route.getOrigin(), route.getDestination(), route.getDistanceKm(), route.getEstimatedTime())
-            ).collect(Collectors.toList());
-
+            List<RouteResponseDTO> list = routeService.listRoute().stream().map(RouteMapper::toResponseDTO).collect(Collectors.toList());
+            
             return ResponseEntity.ok(ApiResponse.success("Listado de rutas", list));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
