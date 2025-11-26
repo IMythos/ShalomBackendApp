@@ -4,6 +4,7 @@ import com.shalom.shalom_backend_app.route.domain.model.Agency;
 import com.shalom.shalom_backend_app.route.domain.model.Route;
 import com.shalom.shalom_backend_app.route.infraestructure.persistence.entity.RouteEntity;
 import com.shalom.shalom_backend_app.route.infraestructure.web.dto.request.RouteRequestDTO;
+import com.shalom.shalom_backend_app.route.infraestructure.web.dto.response.AgencyResponseDTO;
 import com.shalom.shalom_backend_app.route.infraestructure.web.dto.response.RouteResponseDTO;
 
 public class RouteMapper {
@@ -59,12 +60,35 @@ public class RouteMapper {
     public static RouteResponseDTO toResponseDTO(Route domain) {
         if (domain == null) return null;
 
-        return new RouteResponseDTO(
-                domain.getId(),
-                AgencyMapper.toResponseDTO(domain.getOrigin()),
-                AgencyMapper.toResponseDTO(domain.getDestination()),
-                domain.getDistanceKm(),
-                domain.getEstimatedTime()
-        );
+        RouteResponseDTO dto = new RouteResponseDTO();
+
+        dto.setId(domain.getId());
+        
+        if (domain.getOrigin() != null) {
+            AgencyResponseDTO originDTO = new AgencyResponseDTO();
+
+            originDTO.setId(domain.getOrigin().getId());
+            originDTO.setName(domain.getOrigin().getName());
+            originDTO.setCity(domain.getOrigin().getCity());
+            originDTO.setAddress(domain.getOrigin().getAddress());
+
+            dto.setOrigin(originDTO);
+        }
+
+        if (domain.getDestination() != null) {
+            AgencyResponseDTO destinationDTO = new AgencyResponseDTO();
+
+            destinationDTO.setId(domain.getDestination().getId());
+            destinationDTO.setName(domain.getDestination().getName());
+            destinationDTO.setCity(domain.getDestination().getCity());
+            destinationDTO.setAddress(domain.getDestination().getAddress());
+
+            dto.setDestination(destinationDTO);
+        }
+
+        dto.setDistanceKm(domain.getDistanceKm());
+        dto.setEstimatedTime(domain.getEstimatedTime());
+
+        return dto;
     }
 }

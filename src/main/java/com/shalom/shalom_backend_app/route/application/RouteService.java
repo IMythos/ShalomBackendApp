@@ -5,21 +5,31 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.shalom.shalom_backend_app.route.domain.model.Agency;
 import com.shalom.shalom_backend_app.route.domain.model.Route;
 import com.shalom.shalom_backend_app.route.domain.ports.in.ManageRouteUseCase;
+import com.shalom.shalom_backend_app.route.domain.ports.out.AgencyRepositoryPort;
 import com.shalom.shalom_backend_app.route.domain.ports.out.RouteRepositoryPort;
 
 @Service
 public class RouteService implements ManageRouteUseCase {
 
     private final RouteRepositoryPort routeRepositoryPort;
+    private final AgencyRepositoryPort agencyRepositoryPort;
 
-    public RouteService(RouteRepositoryPort routeRepositoryPort) {
+    public RouteService(RouteRepositoryPort routeRepositoryPort, AgencyRepositoryPort agencyRepositoryPort) {
         this.routeRepositoryPort = routeRepositoryPort;
+        this.agencyRepositoryPort = agencyRepositoryPort;
     }
 
     @Override
     public Route createRoute(Route route) {
+        Agency origin = agencyRepositoryPort.findById(route.getOrigin().getId());
+        Agency destination = agencyRepositoryPort.findById(route.getDestination().getId());
+
+        route.setOrigin(origin);
+        route.setDestination(destination);
+
         return routeRepositoryPort.save(route);
     }
 
