@@ -2,6 +2,7 @@ package com.shalom.shalom_backend_app.user.infraestructure.persistence.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeEntity extends UserEntity {
+    
+    @Column(unique = true, length = 8)
+    private String dni;
     private String position;
     private LocalDate hireDate;
 }

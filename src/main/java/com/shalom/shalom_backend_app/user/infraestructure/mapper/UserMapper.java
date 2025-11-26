@@ -60,6 +60,7 @@ public class UserMapper {
         e.setEmail(domain.getEmail());
         e.setPasswordHash(domain.getPasswordHash());
         e.setRole(domain.getRole());
+        e.setDni(domain.getDni());
         e.setPosition(domain.getPosition());
         e.setHireDate(domain.getHireDate());
 
@@ -115,6 +116,7 @@ public class UserMapper {
         emp.setEmail(entity.getEmail());
         emp.setPasswordHash(entity.getPasswordHash());
         emp.setRole(entity.getRole());
+        emp.setDni(entity.getDni());
         emp.setPosition(entity.getPosition());
         emp.setHireDate(entity.getHireDate());
 
@@ -142,6 +144,7 @@ public class UserMapper {
         } else if (domain instanceof Employee) {
             Employee emp = (Employee) domain;
 
+            emp.setDni(emp.getDni());
             dto.setPosition(emp.getPosition());
             dto.setHireDate(emp.getHireDate());
         }
@@ -169,13 +172,14 @@ public class UserMapper {
         } 
         else if ("EMPLOYEE".equalsIgnoreCase(dto.getRole().name())) {
             Employee emp = new Employee();
-            emp.setId(dto.getId());
+            //emp.setId(dto.getId());
             emp.setUsername(dto.getUsername());
             emp.setFirstname(dto.getFirstname());
             emp.setLastname(dto.getLastname());
             emp.setEmail(dto.getEmail());
             emp.setPasswordHash(dto.getPassword());
             emp.setRole(dto.getRole());
+            emp.setDni(dto.getDni());
             emp.setPosition(dto.getPosition());
             emp.setHireDate(dto.getHireDate());
             return emp;
@@ -208,6 +212,7 @@ public class UserMapper {
             dto.setAddress(c.getAddress());
             dto.setPhone(c.getPhone());
         } else if (domain instanceof Employee e) {
+            dto.setDni(e.getDni());
             dto.setPosition(e.getPosition());
             dto.setHireDate(e.getHireDate());
         }

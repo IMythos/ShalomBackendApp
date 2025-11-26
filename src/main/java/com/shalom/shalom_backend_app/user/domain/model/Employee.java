@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Employee extends User {
+
+    private String dni;
     private String position;
     private LocalDate hireDate;
 
