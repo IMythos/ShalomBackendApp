@@ -1,5 +1,7 @@
 package com.shalom.shalom_backend_app.tariff.infraestructure.persistence.entity;
 
+import java.time.LocalDate;
+
 import com.shalom.shalom_backend_app.route.infraestructure.persistence.entity.RouteEntity;
 
 import jakarta.persistence.Column;
@@ -41,5 +43,5 @@ public class TariffEntity {
     private Double pricePerKm;
 
     @Column(name = "effective_date")
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 }

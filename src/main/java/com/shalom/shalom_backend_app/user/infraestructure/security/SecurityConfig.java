@@ -43,7 +43,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/tariff/**").hasRole("ADMIN")
                     .requestMatchers("/api/routes/**").hasRole("ADMIN")
 
-                    .requestMatchers("/api/shipments/**").hasAnyRole("EMPLOYEE")
+                    .requestMatchers("/api/shipments/**").hasRole("EMPLOYEE")
 
                     .requestMatchers("/api/client/shipments/**").hasRole("CLIENT")
                     .requestMatchers("/api/client/solicitudes/**").hasRole("CLIENT")

@@ -1,5 +1,7 @@
 package com.shalom.shalom_backend_app.tariff.infraestructure.web.dto.request;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -16,5 +18,5 @@ public class TariffRequestDTO {
     @NotNull
     private Double pricePerKg;
     private Double pricePerKm;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 }

@@ -1,5 +1,7 @@
 package com.shalom.shalom_backend_app.tariff.infraestructure.web.dto.response;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +17,5 @@ public class TariffResponseDTO {
     private Double basePrice;
     private Double pricePerKg;
     private Double pricePerKm;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 }

@@ -1,5 +1,6 @@
 package com.shalom.shalom_backend_app.shipment.infraestructure.mapper;
 
+import com.shalom.shalom_backend_app.route.domain.model.Agency;
 import com.shalom.shalom_backend_app.route.domain.model.Route;
 import com.shalom.shalom_backend_app.route.infraestructure.mapper.RouteMapper;
 import com.shalom.shalom_backend_app.service.domain.model.Services;
@@ -92,7 +93,17 @@ public class ShipmentMapper {
         dto.setClientName(domain.getClient() != null ? domain.getClient().getUsername() : null);
         
         if (domain.getRoute() != null) {
-            dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
+            Agency originAgency = domain.getRoute().getOrigin();
+            Agency destinationAgency = domain.getRoute().getDestination();
+
+            if (originAgency != null && destinationAgency != null) {
+                String originInfo = String.format("%s (%s)", originAgency.getName(), originAgency.getCity());
+                String destinationInfo = String.format("%s (%s)", destinationAgency.getName(), destinationAgency.getCity());
+
+                dto.setRoute(originInfo + " - " + destinationInfo);
+            } else {
+                dto.setRoute("Ruta sin agencias definidas.");
+            }
         }
 
         dto.setService(domain.getService() != null ? domain.getService().getServiceName() : null);
@@ -112,7 +123,17 @@ public class ShipmentMapper {
         dto.setDate(domain.getDate());
         
         if (domain.getRoute() != null) {
-            dto.setRoute(domain.getRoute().getOrigin() + " - " + domain.getRoute().getDestination());
+            Agency originAgency = domain.getRoute().getOrigin();
+            Agency destinationAgency = domain.getRoute().getDestination();
+
+            if (originAgency != null && destinationAgency != null) {
+                 String originInfo = String.format("%s (%s)", originAgency.getName(), originAgency.getCity());
+                 String destinationInfo = String.format("%s (%s)", destinationAgency.getName(), destinationAgency.getCity());
+                 
+                 dto.setRoute(originInfo + " - " + destinationInfo);
+            } else {
+                 dto.setRoute("Ruta sin agencias definidas");
+            }
         }
 
         dto.setService(domain.getService() != null ? domain.getService().getServiceName() : null);

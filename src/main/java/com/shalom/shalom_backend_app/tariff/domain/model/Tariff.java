@@ -1,5 +1,7 @@
 package com.shalom.shalom_backend_app.tariff.domain.model;
 
+import java.time.LocalDate;
+
 import com.shalom.shalom_backend_app.route.domain.model.Route;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class Tariff {
     private Double basePrice;
     private Double pricePerKg;
     private Double pricePerKm;
-    private String effectiveDate;
+    private LocalDate effectiveDate;
 }
